@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-PSEIpullr is used to pull prices of stocks listed in the Philippine
+PSEIpullr is an R package that can be used to quickly pull prices of stocks listed in the Philippine
 Stock Exchange via the pselookup API.
 
 ## Installation
@@ -16,7 +16,7 @@ You can install the released version of PSEIpullr from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("PSEIpullr")
+install_github("CoconutMartin/PSEIpullr")
 ```
 
 ## Example

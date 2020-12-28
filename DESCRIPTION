@@ -2,7 +2,7 @@ Package: PSEIpullr
 Type: Package
 Title: Pulls Stock Prices Via Pselookup
 Version: 0.1.0
-Author: E. Martin Munsayac
+Author: E. Martin Munsayac <emartin.munsayac@example.com> [aut, cre]
 Maintainer: E. Martin Munsayac
 Description: The goal of PSEIpullr is to pull prices of stocks listed in the Philippine Stock Exchange via the pselookup API.
 License: GPL-3

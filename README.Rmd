@@ -1,0 +1,43 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# PSEIpullr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+PSEIpullr is used to pull prices of stocks listed in the Philippine Stock Exchange via the pselookup API.
+
+## Installation
+
+You can install the released version of PSEIpullr from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("PSEIpullr")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(PSEIpullr)
+
+system.time(
+  ac <- get_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
+)
+
+head(ac)
+```

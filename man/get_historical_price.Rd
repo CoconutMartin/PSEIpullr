@@ -26,5 +26,5 @@ get_historical_price(
 A data frame of stock prices
 }
 \description{
-A function to full single/multiple stock prices listed in the Philippine Stock Exchange via pselookup API
+A function to pull single/multiple stock prices listed in the Philippine Stock Exchange via pselookup API
 }

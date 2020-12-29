@@ -1,6 +1,6 @@
 #' Pull stock prices via pselookup API
 #'
-#' A function to full single/multiple stock prices listed in the Philippine Stock Exchange via pselookup API
+#' A function to pull single/multiple stock prices listed in the Philippine Stock Exchange via pselookup API
 #' @param get_historical_price function to pull stock prices
 #' @param ticker stock ticker to pull
 #' @param type type of price to pull

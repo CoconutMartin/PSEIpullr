@@ -44,7 +44,7 @@ system.time(
   ac <- pull_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
 )
 #>    user  system elapsed 
-#>    0.31    0.02    1.62
+#>    0.30    0.03    1.64
 
 head(ac)
 #>         Date    AC
@@ -64,7 +64,7 @@ system.time(
   multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), type = "close", start_date = "2020-01-01", end_date = "2020-12-28")
 )
 #>    user  system elapsed 
-#>    0.26    0.02    4.51
+#>    0.23    0.05    5.07
 
 head(multi_stock)
 #>         Date    AC   SM
@@ -103,7 +103,7 @@ tictoc::tic()
                          selling_price = 1050, 
                          selling_date = "2020-12-28")
 tictoc::toc()
-#> 2.67 sec elapsed
+#> 2.7 sec elapsed
 
 basic.port <- portfolio_tracker(ac, sm)
 print(basic.port)
@@ -138,4 +138,4 @@ plot_performance(basic.port)
 #> Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-screenshot.alt-1.png" width="100%" />

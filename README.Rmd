@@ -86,7 +86,7 @@ print(basic.port)
 ```
 
 The plot_performance function allows quick plotting of portfolio overtime as the portfolio_tracker function has already done the (basis) analysis of the portfolio. 
-```{r}
+```{r, screenshot.alt}
 plot_performance(basic.port)
 ```
 

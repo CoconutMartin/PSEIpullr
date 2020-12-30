@@ -44,7 +44,7 @@ system.time(
   ac <- pull_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
 )
 #>    user  system elapsed 
-#>    0.30    0.03    1.64
+#>    0.26    0.03    1.89
 
 head(ac)
 #>         Date    AC
@@ -64,7 +64,7 @@ system.time(
   multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), type = "close", start_date = "2020-01-01", end_date = "2020-12-28")
 )
 #>    user  system elapsed 
-#>    0.23    0.05    5.07
+#>    0.14    0.09    4.59
 
 head(multi_stock)
 #>         Date    AC   SM
@@ -103,7 +103,7 @@ tictoc::tic()
                          selling_price = 1050, 
                          selling_date = "2020-12-28")
 tictoc::toc()
-#> 2.7 sec elapsed
+#> 2.78 sec elapsed
 
 basic.port <- portfolio_tracker(ac, sm)
 print(basic.port)
@@ -131,11 +131,6 @@ analysis of the portfolio.
 
 ``` r
 plot_performance(basic.port)
-#> Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
-#> Please use `arrange()` instead.
-#> See vignette('programming') for more help
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
-<img src="man/figures/README-screenshot.alt-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />

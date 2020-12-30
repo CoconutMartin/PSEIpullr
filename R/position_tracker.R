@@ -13,21 +13,16 @@
 #'
 #' @export
 
-# Declare global variables
-
-
 ######## Setup function for tracking stock positions
 position_tracker <- function(deposit = 0,
                              ticker = "ticker",
-                             shares = as.numeric(0),
-                             buying_price = as.numeric(0),
+                             shares = 0,
+                             buying_price = 0,
                              start_date = "yyyy-mm-dd",
-                             selling_price = as.numeric(0),
+                             selling_price = 0,
                              selling_date = "3000-01-01", # placeholder for selling date to avoid code error for open positions
                              industry = "",
                              listing = c("Index", "Non-Index")) {
-
-  requireNamespace(c("dplyr", "lubridate", "tidyr", "stats"))
 
   end_date <- lubridate::today()
 

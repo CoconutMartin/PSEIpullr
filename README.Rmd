@@ -41,7 +41,10 @@ This is a basic example showing how to pull price of stocks listed in the Philip
 library(PSEIpullr)
 
 system.time(
-  ac <- pull_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
+  ac <- pull_historical_price(ticker = "AC", 
+                              type = "close", 
+                              start_date = "2020-01-01", 
+                              end_date = "2020-02-01")
 )
 
 head(ac)
@@ -52,7 +55,10 @@ The next function allows for a simplified way of pulling multiple stock prices:
 
 ```{r}
 system.time(
-  multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), type = "close", start_date = "2020-01-01", end_date = "2020-12-28")
+  multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), 
+                                      type = "close", 
+                                      start_date = "2020-01-01", 
+                                      end_date = "2020-12-28")
 )
 
 head(multi_stock)

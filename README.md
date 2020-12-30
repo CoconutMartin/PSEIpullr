@@ -41,10 +41,13 @@ the Philippine Stock Exchange:
 library(PSEIpullr)
 
 system.time(
-  ac <- pull_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
+  ac <- pull_historical_price(ticker = "AC", 
+                              type = "close", 
+                              start_date = "2020-01-01", 
+                              end_date = "2020-02-01")
 )
 #>    user  system elapsed 
-#>    0.38    0.03    2.05
+#>    0.34    0.02    1.69
 
 head(ac)
 #>         Date    AC
@@ -61,10 +64,13 @@ prices:
 
 ``` r
 system.time(
-  multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), type = "close", start_date = "2020-01-01", end_date = "2020-12-28")
+  multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), 
+                                      type = "close", 
+                                      start_date = "2020-01-01", 
+                                      end_date = "2020-12-28")
 )
 #>    user  system elapsed 
-#>    0.15    0.04    5.18
+#>    0.17    0.10    5.09
 
 head(multi_stock)
 #>         Date    AC   SM
@@ -103,7 +109,7 @@ tictoc::tic()
                          selling_price = 1050, 
                          selling_date = "2020-12-28")
 tictoc::toc()
-#> 2.57 sec elapsed
+#> 2.61 sec elapsed
 
 basic.port <- portfolio_tracker(ac, sm)
 head(basic.port)

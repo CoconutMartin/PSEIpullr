@@ -30,14 +30,58 @@ install.packages("PSEIpullr")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows how to pull prices of stocks listed in the Philippine Stock Market:
 
 ```{r example}
 library(PSEIpullr)
 
 system.time(
-  ac <- get_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
+  ac <- pull_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
 )
 
 head(ac)
 ```
+
+
+The next function allows for simplified pulling stock prices for multiple stocks
+```{r}
+system.time(
+  multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), type = "close", start_date = "2020-01-01", end_date = "2020-12-28")
+)
+
+head(multi_stock)
+```
+
+The package also allows for basic portfolio construction, analysis, and plotting. Start by setting up a position using the position_tracker function before combining both positions to create a basic portfolio data frame. 
+```{r}
+tictoc::tic()
+  ac <- position_tracker(deposit = 1000000, 
+                         ticker = "AC",   
+                         start_date = "2020-01-02", 
+                         shares = 1200, 
+                         buying_price = 770, 
+                         industry = "Conglomerate", 
+                         listing = "Index", 
+                         selling_price = 823, 
+                         selling_date = "2020-11-30")
+  
+  sm <- position_tracker(deposit = 1000000, 
+                         ticker = "SM", 
+                         start_date = "2020-04-30", 
+                         shares = 1300, 
+                         buying_price = 746,    
+                         industry = "Conglomerate", 
+                         listing = "Index", 
+                         selling_price = 1050, 
+                         selling_date = "2020-12-28")
+tictoc::toc()
+
+basic.port <- portfolio_tracker(ac, sm)
+print(basic.port)
+```
+
+The plot_performance function allows quick plotting of portfolio overtime as the portfolio_tracker function has already done the (basis) analysis of the portfolio. 
+```{r}
+plot_performance(basic.port)
+```
+

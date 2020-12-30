@@ -1,6 +1,6 @@
-
-#' A function to generate a data frame of a stock position
-#' @param position_tracker function to generate a data frame of a stock position
+#' A function for tracking stock positions
+#'
+#' @param position_tracker function to generate a data frame of stock position/s
 #' @param ticker stock ticker
 #' @param deposit cash deposit
 #' @param shares number of shares bought / sold
@@ -10,6 +10,8 @@
 #' @param selling_date selling date
 #' @param industry industry type
 #' @param listing listing type
+#'
+#' @importFrom rlang .data
 #'
 #' @export
 
@@ -30,22 +32,24 @@ position_tracker <- function(deposit = 0,
   stx_position <- data.frame(Date = lubridate::ymd(start_date), ticker = ticker, shares = shares, buying_price = buying_price)
 
   # Pull historical stock price
-  stx <- get_historical_price(ticker,
+  stx <- pull_historical_price(ticker,
                               type = "close",
                               start_date = start_date,
                               end_date = end_date)
-  stx <- tidyr::gather(stx, ticker, closing_price, -Date)
+
+  # Transform data frame to long form
+  stx <- tidyr::gather(stx, "ticker", "closing_price", -.data$Date)
 
   # Summarize stock position
   stx_position <- dplyr::bind_rows(stx_position, stx)
-  stx_postion <- tidyr::fill(stx_position, c(shares, buying_price), .direction = "down")
-  stx_postion <- stats::na.omit(stx_position)
+  stx_position <- tidyr::fill(stx_position, c(shares, buying_price), .direction = "down")
+  stx_position <- stats::na.omit(stx_position)
 
   stx_position$selling_date <- lubridate::ymd(selling_date)
   stx_position$deposit <- deposit
   stx_position$position_size <- buying_price * shares
   stx_position$cash <- stx_position$deposit - stx_position$position_size
-  stx_position$ending_position <- ifelse(stx_position$Date > selling_date, NA, stx_position$closing_price * shares)     # ending value of open position
+  stx_position$ending_position <- ifelse(stx_position$Date > selling_date, NA, stx_position$closing_price * shares) # ending value of open position
   stx_position$closing_position <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), selling_price * shares, NA) # closing value of sold position
   stx_position$final_position <- ifelse(stx_position$Date >= selling_date, stx_position$closing_position, stx_position$ending_position) # final value of position
   stx_position$total_equity <- stx_position$final_position + stx_position$cash

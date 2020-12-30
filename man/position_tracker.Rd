@@ -2,7 +2,7 @@
 % Please edit documentation in R/position_tracker.R
 \name{position_tracker}
 \alias{position_tracker}
-\title{A function to generate a data frame of a stock position}
+\title{A function for tracking stock positions}
 \usage{
 position_tracker(
   deposit = 0,
@@ -35,8 +35,8 @@ position_tracker(
 
 \item{listing}{listing type}
 
-\item{position_tracker}{function to generate a data frame of a stock position}
+\item{position_tracker}{function to generate a data frame of stock position/s}
 }
 \description{
-A function to generate a data frame of a stock position
+A function for tracking stock positions
 }

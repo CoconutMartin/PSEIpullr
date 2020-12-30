@@ -44,7 +44,7 @@ system.time(
   ac <- pull_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
 )
 #>    user  system elapsed 
-#>    0.26    0.03    1.89
+#>    0.32    0.03    1.66
 
 head(ac)
 #>         Date    AC
@@ -64,7 +64,7 @@ system.time(
   multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), type = "close", start_date = "2020-01-01", end_date = "2020-12-28")
 )
 #>    user  system elapsed 
-#>    0.14    0.09    4.59
+#>    0.13    0.13    4.52
 
 head(multi_stock)
 #>         Date    AC   SM
@@ -103,7 +103,7 @@ tictoc::tic()
                          selling_price = 1050, 
                          selling_date = "2020-12-28")
 tictoc::toc()
-#> 2.78 sec elapsed
+#> 2.73 sec elapsed
 
 basic.port <- portfolio_tracker(ac, sm)
 print(basic.port)
@@ -133,4 +133,4 @@ analysis of the portfolio.
 plot_performance(basic.port)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+[![port-track.png](https://i.postimg.cc/YSdPDZMj/port-track.png)](https://postimg.cc/FfJG7PfQ)

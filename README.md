@@ -34,8 +34,8 @@ install.packages("PSEIpullr")
 
 ## Example
 
-This is a basic example which shows how to pull prices of stocks listed
-in the Philippine Stock Market:
+This is a basic example showing how to pull price of stocks listed in
+the Philippine Stock Exchange:
 
 ``` r
 library(PSEIpullr)
@@ -44,7 +44,7 @@ system.time(
   ac <- pull_historical_price(ticker = "AC", type = "close", start_date = "2020-01-01", end_date = "2020-02-01")
 )
 #>    user  system elapsed 
-#>    0.32    0.03    1.66
+#>    0.38    0.03    2.05
 
 head(ac)
 #>         Date    AC
@@ -56,15 +56,15 @@ head(ac)
 #> 6 2020-01-09 794.5
 ```
 
-The next function allows for simplified pulling stock prices for
-multiple stocks
+The next function allows for a simplified way of pulling multiple stock
+prices:
 
 ``` r
 system.time(
   multi_stock <- pull_multiple_prices(tickers = c("AC", "SM"), type = "close", start_date = "2020-01-01", end_date = "2020-12-28")
 )
 #>    user  system elapsed 
-#>    0.13    0.13    4.52
+#>    0.15    0.04    5.18
 
 head(multi_stock)
 #>         Date    AC   SM
@@ -77,7 +77,7 @@ head(multi_stock)
 ```
 
 The package also allows for basic portfolio construction, analysis, and
-plotting. Start by setting up a position using the position\_tracker
+plotting. Start by setting up a position using the position\_tracker()
 function before combining both positions to create a basic portfolio
 data frame.
 
@@ -103,31 +103,27 @@ tictoc::tic()
                          selling_price = 1050, 
                          selling_date = "2020-12-28")
 tictoc::toc()
-#> 2.73 sec elapsed
+#> 2.57 sec elapsed
 
 basic.port <- portfolio_tracker(ac, sm)
-print(basic.port)
-#> # A tibble: 241 x 11
-#>    Date       total_deposits total_cash total_position total_ending_po~
-#>    <date>              <dbl>      <dbl>          <dbl>            <dbl>
-#>  1 2020-01-02        1000000      76000         924000           924000
-#>  2 2020-01-03        1000000      76000         924000           931200
-#>  3 2020-01-06        1000000      76000         924000           942000
-#>  4 2020-01-07        1000000      76000         924000           960000
-#>  5 2020-01-08        1000000      76000         924000           948000
-#>  6 2020-01-09        1000000      76000         924000           953400
-#>  7 2020-01-10        1000000      76000         924000           954000
-#>  8 2020-01-14        1000000      76000         924000           953400
-#>  9 2020-01-15        1000000      76000         924000           948000
-#> 10 2020-01-16        1000000      76000         924000           953400
-#> # ... with 231 more rows, and 6 more variables: total_equity <dbl>,
-#> #   total_gains <dbl>, daily_gains <dbl>, total_portfolio_return <dbl>,
-#> #   total_daily_return <dbl>, drawdown <dbl>
+head(basic.port)
+#> # A tibble: 6 x 11
+#>   Date       total_deposits total_cash total_position total_ending_po~
+#>   <date>              <dbl>      <dbl>          <dbl>            <dbl>
+#> 1 2020-01-02        1000000      76000         924000           924000
+#> 2 2020-01-03        1000000      76000         924000           931200
+#> 3 2020-01-06        1000000      76000         924000           942000
+#> 4 2020-01-07        1000000      76000         924000           960000
+#> 5 2020-01-08        1000000      76000         924000           948000
+#> 6 2020-01-09        1000000      76000         924000           953400
+#> # ... with 6 more variables: total_equity <dbl>, total_gains <dbl>,
+#> #   daily_gains <dbl>, total_portfolio_return <dbl>, total_daily_return <dbl>,
+#> #   drawdown <dbl>
 ```
 
-The plot\_performance function allows quick plotting of portfolio
-overtime as the portfolio\_tracker function has already done the (basis)
-analysis of the portfolio.
+The plot\_performance() function allows quick plotting of the portfolio,
+with the portfolio\_tracker() function performing some basic analyses of
+the portfolio.
 
 ``` r
 plot_performance(basic.port)

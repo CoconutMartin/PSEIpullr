@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -18,7 +19,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-PSEIpullr is used to pull prices of stocks listed in the Philippine Stock Exchange via the pselookup API.
+PSEIpullr is used to pull stock prices of companies listed in the Philippine Stock Exchange via the pselookup API as well as to track portfolio performance. This project was inspired by the lack of available package(s) that can be used to efficiently pull local stock prices. 
+
+Massive thanks to Vrymel for maintaining the API. Interested parties can visit his/her website at https://pselookup.vrymel.com/about. 
+
+Disclaimer: As the package uses a third-party API, PSEIpullr cannot guarantee data accuracy pulled by the package. PSEIpullr also makes no warranties, representations, statements, or guarantees (whether express, implied in law or residual) regarding the package. The output of the package is simply for monitoring purposes and is not intended to provide investment advice. 
 
 ## Installation
 

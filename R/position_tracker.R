@@ -35,10 +35,11 @@ position_tracker <- function(deposit = 0,
   stx_position <- data.frame(Date = lubridate::ymd(start_date), ticker = ticker, shares = shares, buying_price = buying_price)
 
   # Pull historical stock price
-  stx <- get_historical_price(ticker, type = "close",
+  stx <- get_historical_price(ticker,
+                              type = "close",
                               start_date = start_date,
                               end_date = end_date)
-  stx <- tidyr::gather(stx, stx$ticker, stx$closing_price, -stx$Date)
+  stx <- tidyr::gather(stx, ticker, closing_price, -Date)
 
   # Summarize stock position
   stx_position <- dplyr::bind_rows(stx_position, stx)

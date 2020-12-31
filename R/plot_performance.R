@@ -18,22 +18,10 @@ plot_performance <- function(x) {
         plotly::plot_ly(.data, x = ~Date, y = ~value) %>%
         plotly::add_trace(name = ~key, color = ~key, type = "scatter", mode = "lines", fill = "tozeroy") %>%
         plotly::layout(
-          title = list(text = "<b>Portfolio Tracker</b>", x = 0.53, font = list(size = 15)),
+          title = list(text = "<b>Portfolio Tracker</b>"),
           yaxis = list(title = ""),
           xaxis = list(title = ""),
           legend = list(orientation = "h", y = -0.1, x = 0.5, xanchor = "center")
-        ) %>%
-        plotly::add_annotations(
-          text = ~unique(key),
-          textangle = -90,
-          x = -0.1,
-          y = 0.475,
-          yref = "paper",
-          xref = "paper",
-          yanchor = "middle",
-          xanchor = "middle",
-          showarrow = FALSE,
-          font = list(size = 12, color = "rgba(255,255,255,255)")
         )
     ) %>%
     plotly::subplot(nrows = 5, shareX = TRUE, shareY = FALSE, titleY = TRUE)

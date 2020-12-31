@@ -7,7 +7,7 @@
 plot_performance(x)
 }
 \arguments{
-\item{x}{output of portfolio tracker}
+\item{x}{summarized output of portfolio tracker}
 }
 \description{
 A function to perform basic portfolio analysis and plotting

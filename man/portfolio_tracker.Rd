@@ -4,10 +4,12 @@
 \alias{portfolio_tracker}
 \title{A function creating a portfolio tracker by combining a list of stocks}
 \usage{
-portfolio_tracker(...)
+portfolio_tracker(..., summarized = TRUE)
 }
 \arguments{
 \item{...}{stock data frame to be combined; stock position output from position_tracker}
+
+\item{summarized}{return summarized portfolio data; return raw portfolio data if FALSE}
 }
 \description{
 A function creating a portfolio tracker by combining a list of stocks

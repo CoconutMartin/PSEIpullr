@@ -1,12 +1,15 @@
 #' A function creating a portfolio tracker by combining a list of stocks
 #'
 #' @param ... stock data frame to be combined; stock position output from position_tracker
+#' @param summarized return summarized portfolio data; return raw portfolio data if FALSE
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @export
 
-portfolio_tracker <- function(...) {
+portfolio_tracker <- function(..., summarized=TRUE) {
   stock_list <- list(...)
+
+  # Combine stock positions into a list
   portfolio <- purrr::reduce(stock_list, dplyr::bind_rows)
 
   portfolio_tracker <- portfolio %>%
@@ -35,6 +38,7 @@ portfolio_tracker <- function(...) {
       drawdown = .data$drawdown * 100
     )
 
-  return(portfolio_tracker)
+  result <- list(portfolio, portfolio_tracker)
+  if (summarized) return (result[[2]]) else return(result[[1]])
 }
 

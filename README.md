@@ -47,7 +47,7 @@ system.time(
                               end_date = "2020-02-01")
 )
 #>    user  system elapsed 
-#>    0.34    0.02    1.69
+#>    0.25    0.03    1.97
 
 head(ac)
 #>         Date    AC
@@ -70,7 +70,7 @@ system.time(
                                       end_date = "2020-12-28")
 )
 #>    user  system elapsed 
-#>    0.17    0.10    5.09
+#>    0.25    0.08    4.52
 
 head(multi_stock)
 #>         Date    AC   SM
@@ -84,8 +84,10 @@ head(multi_stock)
 
 The package also allows for basic portfolio construction, analysis, and
 plotting. Start by setting up a position using the position\_tracker()
-function before combining both positions to create a basic portfolio
-data frame.
+function before combining both positions with portfolio\_tracker() to
+create a basic portfolio data set. portfolio\_tracker() performs basic
+analysis on this data frame for easy plotting but can also return the
+raw combined data for additional analysis.
 
 ``` r
 tictoc::tic()
@@ -109,9 +111,9 @@ tictoc::tic()
                          selling_price = 1050, 
                          selling_date = "2020-12-28")
 tictoc::toc()
-#> 2.61 sec elapsed
+#> 2.59 sec elapsed
 
-basic.port <- portfolio_tracker(ac, sm)
+basic.port <- portfolio_tracker(ac, sm, summarized=TRUE)
 head(basic.port)
 #> # A tibble: 6 x 11
 #>   Date       total_deposits total_cash total_position total_ending_po~
@@ -127,9 +129,8 @@ head(basic.port)
 #> #   drawdown <dbl>
 ```
 
-The plot\_performance() function allows quick plotting of the portfolio,
-with the portfolio\_tracker() function performing some basic analyses of
-the portfolio.
+The plot\_performance() function allows quick plotting of the summarized
+portfolio data set.
 
 ``` r
 plot_performance(basic.port)

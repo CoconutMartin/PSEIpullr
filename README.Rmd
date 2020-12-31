@@ -64,7 +64,7 @@ system.time(
 head(multi_stock)
 ```
 
-The package also allows for basic portfolio construction, analysis, and plotting. Start by setting up a position using the position_tracker() function before combining both positions to create a basic portfolio data frame. 
+The package also allows for basic portfolio construction, analysis, and plotting. Start by setting up a position using the position_tracker() function before combining both positions with portfolio_tracker() to create a basic portfolio data set. portfolio_tracker() performs basic analysis on this data frame for easy plotting but can also return the raw combined data for additional analysis.
 
 ```{r}
 tictoc::tic()
@@ -89,11 +89,11 @@ tictoc::tic()
                          selling_date = "2020-12-28")
 tictoc::toc()
 
-basic.port <- portfolio_tracker(ac, sm)
+basic.port <- portfolio_tracker(ac, sm, summarized=TRUE)
 head(basic.port)
 ```
 
-The plot_performance() function allows quick plotting of the portfolio, with the portfolio_tracker() function performing some basic analyses of the portfolio. 
+The plot_performance() function allows quick plotting of the summarized portfolio data set.
 
 ```{r, warning=FALSE, echo=TRUE, eval=FALSE}
 plot_performance(basic.port)

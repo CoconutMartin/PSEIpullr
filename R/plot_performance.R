@@ -1,11 +1,12 @@
 #' A function to perform basic portfolio analysis and plotting
 #'
-#' @param x output of portfolio tracker
+#' @param x summarized output of portfolio tracker
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @export
 
 plot_performance <- function(x) {
+
   plt <- x %>%
     dplyr::select(.data$Date, .data$total_deposits, .data$total_gains, .data$daily_gains, .data$total_portfolio_return, .data$drawdown) %>%
     stats::setNames(c("Date", "Total Equity", "Total Gains", "Daily Gains", "Portfolio Returns", "Drawdown")) %>%

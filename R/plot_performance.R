@@ -11,7 +11,7 @@ plot_performance <- function(x) {
     dplyr::select(.data$Date, .data$total_deposits, .data$total_gains, .data$daily_gains, .data$total_portfolio_return, .data$drawdown) %>%
     stats::setNames(c("Date", "Total Equity", "Total Gains", "Daily Gains", "Portfolio Returns", "Drawdown")) %>%
     tidyr::gather("key", "value", -.data$Date) %>%
-    dplyr::mutate(key = factor(.data$key, levels = c("Portfolio Returns", "Drawdown", "Total Gains", "Daily Gains", "Total Equity"))) %>%
+    dplyr::mutate(key = factor(.data$key, levels = c("Portfolio Returns", "Drawdown", "Daily Gains", "Total Gains", "Total Equity"))) %>%
     dplyr::group_by(.data$key) %>%
     dplyr::do(
       p =

@@ -77,7 +77,7 @@ position_tracker <- function(deposit = 0,
   stx_position$pse_fee_s <- ifelse(stx_position$Date == selling_date, stx_position$closing_position * 0.00005, NA)
   stx_position$sccp_fee_s <- ifelse(stx_position$Date == selling_date, stx_position$closing_position * 0.00001, NA)
   stx_position$sales_tax <- ifelse(stx_position$Date == selling_date, stx_position$closing_position * 0.0061, NA)
-  stx_position$closing_positioni <- ifelse(stx_position$Date == selling_date, stx_position$closing_position - stx_position$comm_vat_s - stx_position$pse_fee_s - stx_position$sccp_fee_s - stx_position$sales_tax, NA)
+  stx_position$closing_position <- ifelse(stx_position$Date == selling_date, stx_position$closing_position - stx_position$comm_vat_s - stx_position$pse_fee_s - stx_position$sccp_fee_s - stx_position$sales_tax, NA)
 
   # Determine final position and total equity
   stx_position$final_position <- ifelse(stx_position$Date >= selling_date, stx_position$closing_position, stx_position$ending_position) # final value of position

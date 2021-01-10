@@ -51,10 +51,11 @@ position_tracker <- function(deposit = 0,
 
   # Incorporate transaction fees in stock purchase
   stx_position$comm_vat <- (stx_position$position_size * 0.0025) * 1.12
-  stx_position$pse_fee = stx_position$position_size * 0.00005
-  stx_position$sccp_fee = stx_position$position_size * 0.0001
-  stx_position$net_amount = stx_position$position_size + stx_position$comm_vat + stx_position$pse_fee + stx_position$sccp_fee
-  stx_position$buying_price = stx_position$net_amount / stx_position$shares # average unit cost
+  stx_position$pse_fee <- stx_position$position_size * 0.00005
+  stx_position$sccp_fee <- stx_position$position_size * 0.0001
+  stx_position$net_amount <- stx_position$position_size + stx_position$comm_vat + stx_position$pse_fee + stx_position$sccp_fee
+  stx_position$position_size <- stx_position$net_amount
+  stx_position$buying_price <- stx_position$net_amount / stx_position$shares # average unit cost
 
   # Calculate ending/closing position
   stx_position$cash <- stx_position$deposit - stx_position$position_size
@@ -63,12 +64,12 @@ position_tracker <- function(deposit = 0,
   # Incorporate transaction fees in stock sale
 
   stx_position$closing_position <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), selling_price * shares, NA) # closing value of sold position
-  stx_position$comm_vat <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), (stx_position$closing_position * 0.0025) * 1.12, NA)
-  stx_position$pse_fee <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), stx_position$closing_position * 0.00005, NA)
-  stx_position$sccp_fee <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), stx_position$closing_position * 0.00001, NA)
-  stx_position$sales_tax <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), stx_position$closing_position * 0.0061, NA)
+  stx_position$comm_vat_s <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), (stx_position$closing_position * 0.0025) * 1.12, NA)
+  stx_position$pse_fee_s <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), stx_position$closing_position * 0.00005, NA)
+  stx_position$sccp_fee_s <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), stx_position$closing_position * 0.00001, NA)
+  stx_position$sales_tax_s <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"), stx_position$closing_position * 0.0061, NA)
   stx_position$closing_position <- ifelse(stx_position$Date >= selling_date & selling_date != lubridate::ymd("3000-01-01"),
-                                          stx_position$closing_position - stx_position$comm_vat - stx_position$pse_fee - stx_position$sccp_fee - stx_position$sales_tax,
+                                          stx_position$closing_position - stx_position$comm_vat_s - stx_position$pse_fee_s - stx_position$sccp_fee_s - stx_position$sales_tax_s,
                                           NA)
 
     # Determine final position and total equity

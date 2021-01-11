@@ -29,7 +29,7 @@ You can install the released version of PSEIpullr from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("PSEIpullr")
+devtools::install_github("CoconutMartin/PSEIpullr")
 ```
 
 ## Example
